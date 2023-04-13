@@ -1,0 +1,33 @@
+---
+
+- name: installing docker
+  hosts: all
+  become: true
+  tasks:
+
+  - name: installing docker
+    package:
+      name: docker
+      state: present
+  - name: starting docker
+    service:
+      name: docker
+      state: started
+
+- name: creating file
+  hosts: all
+  become: true
+  tasks:
+
+  - name: creating a new directory
+    file:
+      path: ~/welcome
+      state: directory
+  - name: creating a new file
+    copy:
+      dest: ~/welcome/welcome.txt
+      content: "welcome to the new server."
+    
+    
+
+
