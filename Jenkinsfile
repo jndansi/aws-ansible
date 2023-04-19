@@ -10,13 +10,15 @@ pipeline {
             }
         }
         
-        stage('Run Ansible Playbook'){
-            steps{
-                sh 'ansible-playbook -i /opt/ansible/inventory/aws_ec2.yaml /etc/ansible/playbook.yaml'
+        stage('Change Directory') {
+            steps {
+                dir('/etc/ansible') {
+                    // sh 'sleep 65'
+                    sh 'ansible-playbook -i /opt/ansible/inventory/aws_ec2.yaml /etc/ansible/playbook.yaml'
+                }
             }
         }
-    
-    
+            
     }
 
 }
